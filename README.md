@@ -1,2 +1,0 @@
-# VityasGame
-game with Vitya
