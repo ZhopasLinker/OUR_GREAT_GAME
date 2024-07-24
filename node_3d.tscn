@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjkpkgjlh7o6e"]
+
+[ext_resource type="ArrayMesh" uid="uid://cy8g0wut8verd" path="res://Azri/AZRI.obj" id="1_kwc18"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Azri" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61771, -1.19209e-07, 0.236668)
+mesh = ExtResource("1_kwc18")

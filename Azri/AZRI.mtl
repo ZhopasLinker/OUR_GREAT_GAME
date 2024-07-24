@@ -1,0 +1,57 @@
+# Blender 4.2.0 MTL File: 'None'
+# www.blender.org
+
+newmtl body_material3
+Ns 20.000006
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd Maya/AZRI/textures/Azri_Body_Albedo.tga
+map_Ks Maya/AZRI/textures/Azri_Body_Spec.png
+map_d Maya/AZRI/textures/Azri_Body_Albedo.tga
+map_Bump -bm 1.000000 Maya/AZRI/textures/Azri_Body_Normal.png
+
+newmtl head_material
+Ns 32.727280
+Ka 0.500000 0.500000 0.500000
+Ni 1.500000
+illum 3
+map_Kd Maya/AZRI/textures/Azri_Head_Albedo.tga
+map_Ks Maya/AZRI/textures/Azri_Head_Spec.png
+map_Ke Maya/AZRI/textures/Azri_Head_Emissive.png
+map_d Maya/AZRI/textures/Azri_Head_Albedo.tga
+map_Bump -bm 1.000000 Maya/AZRI/textures/Azri_Head_Normal.png
+
+newmtl head_material3
+Ns 32.727280
+Ka 0.500000 0.500000 0.500000
+Ni 1.500000
+illum 3
+map_Kd Maya/AZRI/textures/Azri_Head_Albedo.tga
+map_Ks Maya/AZRI/textures/Azri_Head_Spec.png
+map_Ke Maya/AZRI/textures/Azri_Head_Emissive.png
+map_d Maya/AZRI/textures/Azri_Head_Albedo.tga
+map_Bump -bm 1.000000 Maya/AZRI/textures/Azri_Head_Normal.png
+
+newmtl scythe_mat
+Ns 236.363632
+Ka 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 3
+map_Kd Maya/AZRI/textures/Scythe_BaseColor.png
+map_Ks Maya/AZRI/textures/Scythe_Roughness.png
+map_d Maya/AZRI/textures/Scythe_BaseColor.png
+map_Bump -bm 1.000000 Maya/AZRI/textures/Scythe_Normal.png
+
+newmtl sword_mat
+Ns 236.363632
+Ka 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 3
+map_Kd Maya/AZRI/textures/Sword_BaseColor.png
+map_Ks Maya/AZRI/textures/Sword_Roughness.png
+map_d Maya/AZRI/textures/Sword_BaseColor.png
+map_Bump -bm 1.000000 Maya/AZRI/textures/Sword_Normal.png
