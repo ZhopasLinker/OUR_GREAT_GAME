@@ -1,9 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjkpkgjlh7o6e"]
+[gd_scene load_steps=7 format=3 uid="uid://bjkpkgjlh7o6e"]
 
 [ext_resource type="ArrayMesh" uid="uid://cy8g0wut8verd" path="res://Azri/AZRI.obj" id="1_kwc18"]
+[ext_resource type="Texture2D" uid="uid://b3rrsymjxuy8q" path="res://ground_textures/ground_AO.png" id="2_uk771"]
+[ext_resource type="Texture2D" uid="uid://cggb4xe7w2brq" path="res://ground_textures/ground_height.png" id="3_eedxo"]
+[ext_resource type="Texture2D" uid="uid://dwtgd2xptejrw" path="res://ground_textures/ground_normal_OpenGl.png" id="4_ekchk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qg058"]
+albedo_color = Color(0.318512, 0.405228, 0.59081, 1)
+normal_enabled = true
+normal_texture = ExtResource("4_ekchk")
+ao_enabled = true
+ao_texture = ExtResource("2_uk771")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_eedxo")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iyjrt"]
+size = Vector2(100, 100)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Azri" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61771, -1.19209e-07, 0.236668)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07539, -1.19209e-07, 0.236668)
 mesh = ExtResource("1_kwc18")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_qg058")
+mesh = SubResource("PlaneMesh_iyjrt")

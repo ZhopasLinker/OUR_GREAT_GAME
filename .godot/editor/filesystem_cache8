@@ -1,5 +1,12 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1721840003
+::res://::1721988756
 icon.svg::CompressedTexture2D::2906229354748028991::1721839938::1721839990::1::::<><>::
-::res://Azri/::1721840007
+ideas.txt::TextFile::-1::1721842361::0::1::::<><>::
+node_3d.tscn::PackedScene::3039692996360295786::1721840043::0::1::::<><>::uid://cy8g0wut8verd::::res://Azri/AZRI.obj
+::res://Azri/::1721840008
 AZRI.obj::Mesh::6525908214705167341::1721840007::1721840008::1::::<><>::
+::res://ground_textures/::1721989257
+ground_AO.png::CompressedTexture2D::4387868340082867970::1721988762::1721989273::1::::<><>::
+ground_height.png::CompressedTexture2D::5206474416455430414::1721988762::1721989273::1::::<><>::
+ground_normal.png::CompressedTexture2D::3174043136027629657::1721988762::1721988827::1::::<><>::
+ground_normal_OpenGl.png::CompressedTexture2D::8743010902149510252::1721989255::1721989272::1::::<><>::
