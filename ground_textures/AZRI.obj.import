@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bb3t1hbxegrcb"
+path="res://.godot/imported/AZRI.obj-89fd759293f484cdab66ed4372ae7835.mesh"
+
+[deps]
+
+files=["res://.godot/imported/AZRI.obj-89fd759293f484cdab66ed4372ae7835.mesh"]
+
+source_file="res://ground_textures/AZRI.obj"
+dest_files=["res://.godot/imported/AZRI.obj-89fd759293f484cdab66ed4372ae7835.mesh", "res://.godot/imported/AZRI.obj-89fd759293f484cdab66ed4372ae7835.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,22 +1,123 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjkpkgjlh7o6e"]
+[gd_scene load_steps=18 format=3 uid="uid://bjkpkgjlh7o6e"]
 
 [ext_resource type="ArrayMesh" uid="uid://cy8g0wut8verd" path="res://Azri/AZRI.obj" id="1_kwc18"]
-[ext_resource type="Texture2D" uid="uid://b3rrsymjxuy8q" path="res://ground_textures/ground_AO.png" id="2_uk771"]
-[ext_resource type="Texture2D" uid="uid://cggb4xe7w2brq" path="res://ground_textures/ground_height.png" id="3_eedxo"]
-[ext_resource type="Texture2D" uid="uid://dwtgd2xptejrw" path="res://ground_textures/ground_normal_OpenGl.png" id="4_ekchk"]
+[ext_resource type="Texture2D" uid="uid://8r8l4l6dpld4" path="res://ground_textures/ground_Substance_graph_basecolor.png" id="2_v6s6i"]
+[ext_resource type="Texture2D" uid="uid://odjly6xbo6yt" path="res://ground_textures/Substance_graph_ambientocclusion.png" id="3_708fx"]
+[ext_resource type="Texture2D" uid="uid://clfuecssn7u8y" path="res://ground_textures/ground_Substance_graph_normal.png" id="4_45u0g"]
+[ext_resource type="Texture2D" uid="uid://0dig3mirl6u0" path="res://ground_textures/Substance_graph_height.png" id="4_e3jpx"]
+[ext_resource type="Texture2D" uid="uid://brgnilix8e2ak" path="res://ground_textures/Substance_graph_roughness.png" id="6_6thv0"]
+[ext_resource type="ArrayMesh" uid="uid://b7b52rhmltwmf" path="res://ground_textures/ground1.obj" id="7_x6r5q"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qg058"]
-albedo_color = Color(0.318512, 0.405228, 0.59081, 1)
-normal_enabled = true
-normal_texture = ExtResource("4_ekchk")
-ao_enabled = true
-ao_texture = ExtResource("2_uk771")
-heightmap_enabled = true
-heightmap_texture = ExtResource("3_eedxo")
-uv1_scale = Vector3(100, 100, 100)
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_pqrf1"]
+texture = ExtResource("2_v6s6i")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_iyjrt"]
-size = Vector2(100, 100)
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6vqa5"]
+texture = ExtResource("3_708fx")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1rxls"]
+texture = ExtResource("4_45u0g")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_c3dle"]
+texture = ExtResource("6_6thv0")
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_gkb37"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0, 5, 0)]
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_aeukc"]
+texture = ExtResource("4_e3jpx")
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_mnnki"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_3aoky"]
+input_name = "vertex"
+
+[sub_resource type="VisualShader" id="VisualShader_qb0cm"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_vtx_2;
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_5;
+uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_4;
+
+
+
+void vertex() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_vtx_2, UV);
+
+
+// VectorOp:10
+	vec3 n_in10p1 = vec3(0.00000, 5.00000, 0.00000);
+	vec3 n_out10p0 = vec3(n_out2p0.xyz) * n_in10p1;
+
+
+// Input:7
+	vec3 n_out7p0 = VERTEX;
+
+
+// VectorOp:6
+	vec3 n_out6p0 = n_out10p0 + n_out7p0;
+
+
+// Output:0
+	VERTEX = n_out6p0;
+
+
+}
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Texture2D:5
+	vec4 n_out5p0 = texture(tex_frg_5, UV);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Texture2D:4
+	vec4 n_out4p0 = texture(tex_frg_4, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ROUGHNESS = n_out5p0.x;
+	AO = n_out3p0.x;
+	NORMAL_MAP = vec3(n_out4p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-271.636, -112.083)
+nodes/vertex/0/position = Vector2(880, 240)
+nodes/vertex/2/node = SubResource("VisualShaderNodeTexture_aeukc")
+nodes/vertex/2/position = Vector2(-120, 80)
+nodes/vertex/6/node = SubResource("VisualShaderNodeVectorOp_mnnki")
+nodes/vertex/6/position = Vector2(500, 80)
+nodes/vertex/7/node = SubResource("VisualShaderNodeInput_3aoky")
+nodes/vertex/7/position = Vector2(20, 360)
+nodes/vertex/10/node = SubResource("VisualShaderNodeVectorOp_gkb37")
+nodes/vertex/10/position = Vector2(200, 100)
+nodes/vertex/connections = PackedInt32Array(7, 0, 6, 1, 6, 0, 0, 0, 2, 0, 10, 0, 10, 0, 6, 0)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_pqrf1")
+nodes/fragment/2/position = Vector2(-360, 20)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_6vqa5")
+nodes/fragment/3/position = Vector2(0, 340)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_1rxls")
+nodes/fragment/4/position = Vector2(-263.217, 307.405)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_c3dle")
+nodes/fragment/5/position = Vector2(-180, 640)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 6, 4, 0, 0, 9, 5, 0, 0, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cncu3"]
+render_priority = 0
+shader = SubResource("VisualShader_qb0cm")
 
 [node name="Node3D" type="Node3D"]
 
@@ -24,6 +125,8 @@ size = Vector2(100, 100)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07539, -1.19209e-07, 0.236668)
 mesh = ExtResource("1_kwc18")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_qg058")
-mesh = SubResource("PlaneMesh_iyjrt")
+[node name="Ground1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.87758, 0, 1.73704)
+material_override = SubResource("ShaderMaterial_cncu3")
+cast_shadow = 0
+mesh = ExtResource("7_x6r5q")
